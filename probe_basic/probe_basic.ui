@@ -33682,6 +33682,85 @@ border-radius: 4px;
              </property>
             </widget>
            </item>
+           <item>
+            <layout class="QHBoxLayout" name="horizontalLayout_127">
+             <property name="spacing">
+              <number>0</number>
+             </property>
+             <item>
+              <widget class="ActionButton" name="jog_incremental">
+               <property name="minimumSize">
+                <size>
+                 <width>65</width>
+                 <height>40</height>
+                </size>
+               </property>
+               <property name="maximumSize">
+                <size>
+                 <width>65</width>
+                 <height>40</height>
+                </size>
+               </property>
+               <property name="font">
+                <font>
+                 <pointsize>14</pointsize>
+                </font>
+               </property>
+               <property name="text">
+                <string>Incr</string>
+               </property>
+               <property name="checkable">
+                <bool>true</bool>
+               </property>
+               <property name="actionName" stdset="0">
+                <string>machine.jog-mode.incremental</string>
+               </property>
+               <property name="rules" stdset="0">
+                <string>[{&quot;channels&quot;: [{&quot;url&quot;: &quot;settings:machine.jog.mode-incremental&quot;, &quot;trigger&quot;: true}], &quot;property&quot;: &quot;Checked&quot;, &quot;expression&quot;: &quot;ch[0]&quot;, &quot;name&quot;: &quot;check when enabled&quot;}]</string>
+               </property>
+               <attribute name="buttonGroup">
+                <string notr="true">jogmodebtnGroup</string>
+               </attribute>
+              </widget>
+             </item>
+             <item>
+              <widget class="ActionButton" name="jog_continuous">
+               <property name="minimumSize">
+                <size>
+                 <width>65</width>
+                 <height>40</height>
+                </size>
+               </property>
+               <property name="maximumSize">
+                <size>
+                 <width>65</width>
+                 <height>40</height>
+                </size>
+               </property>
+               <property name="font">
+                <font>
+                 <pointsize>14</pointsize>
+                </font>
+               </property>
+               <property name="text">
+                <string>Cont</string>
+               </property>
+               <property name="checkable">
+                <bool>true</bool>
+               </property>
+               <property name="actionName" stdset="0">
+                <string>machine.jog-mode.continuous</string>
+               </property>
+               <property name="rules" stdset="0">
+                <string>[{&quot;channels&quot;: [{&quot;url&quot;: &quot;settings:machine.jog.mode-incremental&quot;, &quot;trigger&quot;: true}], &quot;property&quot;: &quot;Checked&quot;, &quot;expression&quot;: &quot;not ch[0]&quot;, &quot;name&quot;: &quot;check when not enabled&quot;}]</string>
+               </property>
+               <attribute name="buttonGroup">
+                <string notr="true">jogmodebtnGroup</string>
+               </attribute>
+              </widget>
+             </item>
+            </layout>
+           </item>
           </layout>
          </item>
          <item>
@@ -36140,16 +36219,17 @@ font: 11pt bebas kai;
   </property>
  </designerdata>
  <buttongroups>
-  <buttongroup name="probemodeGroup"/>
-  <buttongroup name="customwcsbtnGroup"/>
-  <buttongroup name="plotviewGroup"/>
   <buttongroup name="plotorthoperspbtnGroup"/>
-  <buttongroup name="proberoutinebtnGroup"/>
   <buttongroup name="xycalbtnGroup"/>
-  <buttongroup name="probehelpGroup"/>
   <buttongroup name="probetabGroup"/>
+  <buttongroup name="customwcsbtnGroup"/>
+  <buttongroup name="proberoutinebtnGroup"/>
   <buttongroup name="btngrpMdi"/>
   <buttongroup name="mainorthoperspbtnGroup"/>
+  <buttongroup name="plotviewGroup"/>
+  <buttongroup name="probehelpGroup"/>
   <buttongroup name="probepagewcsbtnGroup"/>
+  <buttongroup name="probemodeGroup"/>
+  <buttongroup name="jogmodebtnGroup"/>
  </buttongroups>
 </ui>
