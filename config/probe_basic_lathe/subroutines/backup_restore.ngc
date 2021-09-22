@@ -1,0 +1,172 @@
+; backup_restore metric/inch absolute/relative, feed as per paramter values
+; call as o<backup_restore> call     ; backup_restore g20/21, g90/g91, feedrate cuter-comp and other using now global _backup_var
+;
+o<backup_restore> sub
+;
+;RS274NGC_STARTUP_CODE = G7 G18 G21 G40 G49 G54 G64 P0.001 G80 G90 G90.1 G92.1 G94 G97 G99 M5 M9 M53
+;for a complete restore according to what is configured in my ini
+G64P0.001 G97 G99 M5 M9
+
+
+
+o1 if [EXISTS [#<_backup_metric>]]
+
+     (DEBUG,RESTORE MODAL STATUS USING _BACKUP_VAR)
+
+     o10 if [#<_backup_metric> NE #<_metric>]
+      o11 if [#<_backup_metric>]
+          G21
+      o11 else
+          G20
+      o11 endif
+     o10 endif
+     
+
+     o20 if [#<_backup_absolute> NE #<_absolute>]
+      o21 if [#<_backup_absolute>]
+          G90
+      o21 else
+          G91
+      o21 endif
+     o20 endif
+
+
+     o30 if [#<_backup_feed> NE #<_feed>]
+          F[#<_backup_feed>]
+     o30 endif
+
+
+     o40 if [#<_backup_ccomp> NE #<_ccomp>]
+      o41  if [#<_backup_ccomp> EQ 400]
+            G40
+      o41  elseif [#<_backup_ccomp> EQ 410]
+            G41
+      o41  elseif [#<_backup_ccomp> EQ 411]
+            G41.1
+      o41  elseif [#<_backup_ccomp> EQ 420]
+            G42
+      o41  elseif [#<_backup_ccomp> EQ 421]
+            G42.1
+      o41  endif
+     o40 endif
+
+
+     o50 if [#<_backup_tool_offset> NE #<_tool_offset>]
+      o51  if [#<_backup_tool_offset> EQ 490]
+            G49
+      o51  elseif [#<_backup_tool_offset> EQ 430]
+            G43
+      o51  elseif [#<_backup_tool_offset> EQ 431]
+            G43.1
+      o51  elseif [#<_backup_tool_offset> EQ 432]
+            G43.2
+      o51  endif
+     o50 endif
+
+
+     o60 if [#<_backup_coord_system> NE #<_coord_system>]
+      o61  if [#<_backup_coord_system> EQ 540]
+            G54
+      o61  elseif [#<_backup_coord_system> EQ 550]
+            G55
+      o61  elseif [#<_backup_coord_system> EQ 560]
+            G56
+      o61  elseif [#<_backup_coord_system> EQ 570]
+            G57
+      o61  elseif [#<_backup_coord_system> EQ 580]
+            G58
+      o61  elseif [#<_backup_coord_system> EQ 590]
+            G59
+      o61  elseif [#<_backup_coord_system> EQ 591]
+            G59.1
+      o61  elseif [#<_backup_coord_system> EQ 592]
+            G59.2
+      o61  elseif [#<_backup_coord_system> EQ 593]
+            G59.3
+      o61  endif
+     o60 endif
+
+
+     o70 if [#<_backup_ijk_abs_mode> NE #<_ijk_absolute_mode>]
+          o71 if [#<_backup_ijk_abs_mode>]
+              G90.1
+          o71 else
+              G91.1
+          o71 endif
+     o70 endif
+
+
+     ;o80 if [#<_backup_lathe_mode>}
+          o81 if [#<_backup_lathe_diam_mode> NE #<_lathe_diameter_mode>]
+               o82    if [#<_backup_lathe_diam_mode>]
+                       G7  (lathe diameter mode)
+               o82    else
+                       G8
+               o82    endif
+          o81 endif
+     ;o80 endif
+
+
+     o90 if [#<_backup_plane> NE #<_plane>]
+      o91  if [#<_backup_plane> EQ 170]
+            G17
+      o91  elseif [#<_backup_plane> EQ 180]
+            G18
+      o91  elseif [#<_backup_plane> EQ 190]
+            G19
+      o91  elseif [#<_backup_plane> EQ 171]
+            G17.1
+      o91  elseif [#<_backup_plane> EQ 181]
+            G18.1
+      o91  else if [#<_backup_plane> EQ 191]
+            G19.1
+      o91  endif
+     o90 endif
+
+
+     o100 if [#<_backup_units_per_min> NE #<_units_per_minute>]
+      o101  if [#<_backup_units_per_min> EQ 1]
+            G94
+      o101  else
+            G95
+      o101  endif
+     o100 endif
+
+
+     o110 if [#<_backup_retract_old_z> NE #<_retract_old_z>]
+      o111  if [#<_backup_retract_old_z> EQ 1]
+            G99
+      o111  else
+            G98
+      o111  endif
+     o110 endif
+
+o1 else
+
+     (DEBUG,RESTORE MODAL STATUS USING FIXED VALUE)
+
+    ; FULL STATRUP LIST FROM CONFIG
+    ;G7 G18 G21 G40 G49 G54 G64P0.001 G80 G90 G90.1 G92.1 G94 G97 G99 M5 M9 M53
+
+    ; o1 if [#<_ini[DISPLAY]LATHE> EQ 1]
+    ;    G7  (lathe diameter mode)
+    ; o1 endif
+
+    G21 (metric)
+    G40 (cutter compensation off)
+    G54 (origin offsets are set to the default)
+    G64 P0.001 (Path Blending)
+    G80 (cancel canned cycle)
+    G90 (absolute)
+    G90.1 (Arc Distance mode)
+    G92.1
+    G94 (feed mode: units/minute)
+    G97 (spindle rpm mode)
+    G99 (canned cycle return mode)
+    M48 (set feed and speed overrides)
+    M53 (feed Stop Control)
+
+o1 endif
+
+o<backup_restore> endsub
+M2

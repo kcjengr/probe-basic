@@ -1,5 +1,12 @@
 <RCC>
 <qresource prefix="/">
+
+    <file>images/Facing.png</file>
+    <file>images/Threading.png</file>
+    <file>images/chamfer.png</file>
+    <file>images/radius.png</file>
+    <file>images/Bore.png</file>
+    <file>images/Turn.png</file>
     <file>images/boss_round.png</file>
     <file>images/back_left_outside_corner.png</file>
     <file>images/back_middle_outside_edge.png</file>

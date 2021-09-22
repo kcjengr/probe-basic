@@ -1,0 +1,102 @@
+chamfer
+o<chamfer> sub
+
+  o<backup_status> call
+
+#<chamfer_x>        = #1
+#<chamfer_ss>      = #2
+#<chamfer_doc>            = #3  ;depth of cut
+#<chamfer_z>        = #4
+#<chamfer_tool>    = #5
+#<chamfer_feed>   = #6
+#<chamfer_exterior_front> = #7   ;will be cut if > 0
+#<chamfer_interior>       = #8   ;will be cut if > 0
+#<chamfer_exterior_rear>  = #9   ;will be cut if > 0
+#<chamfer_coolant>        = #10
+#<chamfer_maxrpm>       = #11
+
+
+        O100 if [#<chamfer_tool>  NE #<_current_tool>]
+             (MSG,ERROR : Set tool before use macro)
+        O100 return [-2] ; indicate failure to epilog
+        O100 endif
+
+G8  ; Lathe radius Mode
+G18 ; XZ Plane
+G21 ; Metric Units
+G90 ; Absolute Distance
+
+
+#<chamfer_x> = [#<chamfer_x> / 2] ; because of radius mode
+#<starting_X> = #<_x> (starting X)
+#<starting_Z> = #<_z> (starting Z)
+
+G96 D#<chamfer_maxrpm> S#<chamfer_ss> ; Constant Surface Speed Mode
+M3            ; Start Spindle
+G95 F#<chamfer_feed>      ; Feed-Per-Rev Mode
+G4P1          ; Wait to reach speed
+
+        O110 if [#<chamfer_coolant>]
+                M8
+        O110 endif
+
+#<temp> = 0
+        O200 if [#<chamfer_exterior_front> GT 0] ; front outside
+             o201 while [[#<temp> + #<chamfer_doc> ] lt #<chamfer_exterior_front> ]
+                  #<temp> = [#<temp> + #<chamfer_doc> ]
+                  G0 x[#<chamfer_x> - #<temp>] z#<starting_Z>
+                  G1 z#<chamfer_z>
+                  G1 x#<chamfer_x> z[#<chamfer_z> - #<temp>]
+                  G1 x#<starting_X>
+                  G0 z#<starting_Z>
+             o201 endwhile
+
+             G0 x#<starting_X> z#<starting_Z>
+             G0 x[#<chamfer_x> - #<chamfer_exterior_front> ]
+             G1 z#<chamfer_z>
+             G1 x#<chamfer_x> z[#<chamfer_z> - #<chamfer_exterior_front> ]
+             G1 x#<starting_X>
+             G0 z#<starting_Z>
+        O200 elseif [#<chamfer_interior> GT 0] ; front inside
+             o202 while [[#<temp> + #<chamfer_doc> ] lt #<chamfer_interior>  ]
+                  #<temp> = [#<temp> + #<chamfer_doc> ]
+                  G0 x[#<chamfer_x> + #<temp>] z#<starting_Z>
+                  G1 z#<chamfer_z>
+                  G1 x#<chamfer_x> z[#<chamfer_z> - #<temp>]
+                  G1 x#<starting_X>
+                  G0 z#<starting_Z>
+             o202 endwhile
+
+             G0 x#<starting_X> z#<starting_Z>
+             G0 x[#<chamfer_x> + #<chamfer_interior>  ]
+             G1 z#<chamfer_z>
+             G1 x#<chamfer_x> z[#<chamfer_z> - #<chamfer_interior> ]
+             G1 x#<starting_X>
+             G0 z#<starting_Z>
+        O200 elseif [#<chamfer_exterior_rear> GT 0] ; back outside
+             o203 while [[#<temp> + #<chamfer_doc> ] lt <chamfer_exterior_rear>]
+                  #<temp> = [#<temp> + #<chamfer_doc> ]
+                  G0 x[#<chamfer_x> - #<temp>] z#<starting_Z>
+                  G1 z#<chamfer_z>
+                  G1 x#<chamfer_x> z[#<chamfer_z> + #<temp>]
+                  G1 x#<starting_X>
+                  G0 z#<starting_Z>
+             o203 endwhile
+
+             G0 x#<starting_X> z#<starting_Z>
+             G0 x[#<chamfer_x> - <chamfer_exterior_rear>]
+             G1 z#<chamfer_z>
+             G1 x#<chamfer_x> z[#<chamfer_z> + <chamfer_exterior_rear> ]
+             G1 x#<starting_X>
+             G0 z#<starting_Z>
+        O200 endif
+
+M5
+M9
+
+  o<backup_restore> call     ; restore g20/21, g90/g91, feedrate cuter-comp and other using now global _backup_var
+
+o<chamfer> endsub
+
+M2
+%

@@ -1,0 +1,101 @@
+;radius
+o<radius> sub
+
+  o<backup_status> call
+
+#<radius_x>        = #1
+#<radius_ss>      = #2
+#<radius_feed>    = #3
+#<radius_doc>     = #4 ;depth of cut 
+#<radius_z>       = #5
+#<radius_tool>    = #6
+#<radius_exterior_front> = #8	;will be cut ig freater than 0
+#<radius_interior>       = #9 	;will be cut ig freater than 0
+#<radius_exterior_rear>  = #10 	;will be cut ig freater than 0
+#<radius_coolant>        = #11
+#<radius_maxrpm>       = #12
+
+;M6 T#<tool_number> G43
+        O100 if [#<radius_tool> NE #<_current_tool>]
+             (MSG,ERROR : Set tool before use macro)
+        O100 return [-2] ; indicate failure to epilog
+        O100 endif
+
+G7  ; Lathe diameter mode
+G18 ; XZ Plane
+G21 ; Metric Units
+G90 ; Absolute Distance
+
+#<radius_x> = [#<radius_x> / 2] ; because of radius mode
+#<starting_X> = #<_x> (starting X)
+#<starting_Z> = #<_z> (starting Z)
+
+G96 D#<radius_maxrpm> S#<radius_ss> ; Constant Surface Speed Mode
+M3            ; Start Spindle
+G95 F#<radius_feed>      ; Feed-Per-Rev Mode
+G4P1          ; Wait to reach speed
+
+        O110 if [#<radius_coolant>]
+                M8
+        O110 endif
+
+#<temp> = 0
+        O200 if [#<radius_exterior_front> GT 0] ; Front outside
+             o201 while [[#<temp> + #<radius_doc>] lt #<radius_exterior_front>]
+                  #<temp> = [#<temp> + #<radius_doc>]
+                  G0 x[#<radius_x> - #<temp>] z#<starting_Z>
+                  G1 z#<radius_z>
+                  G3 x#<radius_x> z[#<radius_z> - #<temp>] K[-#<temp>]
+                  G1 x#<starting_X>
+                  G0 z#<starting_Z>
+             o201 endwhile
+
+                  G0 x#<starting_X> z#<starting_Z>
+                  G0 x[#<radius_x> - #<radius_exterior_front>]
+                  G1 z#<radius_z>
+                  G3 x#<radius_x> z[#<radius_z> - #<radius_exterior_front>] K[-#<radius_exterior_front>]
+                  G1 x#<starting_X>
+                  G0 z#<starting_Z>
+        O200 elseif [#<radius_interior> GT 0.5] ; front inside
+             o202 while [[#<temp> + #<radius_doc>] lt #<radius_interior>]
+                  #<temp> = [#<temp> + #<radius_doc>]
+                  G0 x[#<radius_x> + #<temp>] z#<starting_Z>
+                  G1 z#<radius_z>
+                  G2 x#<radius_x> z[#<radius_z> - #<temp>] K[-#<temp>]
+                  G1 x#<starting_X>
+                  G0 z#<starting_Z>
+             o202endwhile
+
+             G0 x#<starting_X> z#<starting_Z>
+             G0 x[#<radius_x> + #<radius_interior>]
+             G1 z#<radius_z>
+             G2 x#<radius_x> z[#<radius_z> - #<radius_interior>] K[-#<radius_interior>]
+             G1 x#<starting_X>
+             G0 z#<starting_Z>
+        O300 elseif [#<radius_exterior_rear> GT 0.5] ; back outside
+             o301 while [[#<temp> + #<radius_doc>] lt #<radius_exterior_rear>]
+                  #<temp> = [#<temp> + #<radius_doc>]
+                  G0 x[#<radius_x> - #<temp>] z#<starting_Z>
+                  G1 z#<radius_z>
+                  G2 x#<radius_x> z[#<radius_z> + #<temp>] K#<temp>
+                  G1 x#<starting_X>
+                  G0 z#<starting_Z>
+             o301 endwhile
+
+             G0 x#<starting_X> z#<starting_Z>
+             G0 x[#<radius_x> - #<radius_size>]
+             G1 z#<radius_z>
+             G2 x#<radius_x> z[#<radius_z> + #<radius_exterior_rear>] K#<radius_exterior_rear>
+             G1 x#<starting_X>
+             G0 z#<starting_Z>
+        O300 endif
+
+M5
+M9
+
+  o<backup_restore> call     ; restore g20/21, g90/g91, feedrate cuter-comp and other using now global _backup_var
+
+o<radius> endsub
+
+M2
+%

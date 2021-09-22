@@ -1,0 +1,68 @@
+;Facing
+o<facing> sub
+
+  o<backup_status> call
+
+#<facing_ss>  = #1
+#<facing_maxrpm> = #2
+#<facing_feed>  = #3
+#<facing_doc>  = #4
+#<facing_tool>  = #5
+#<facing_coolant> = #6
+#<facing_angle>  = #7
+#<facing_x>   = #8
+#<facing_z>   = #9
+
+        O10 if [#<facing_angle>NE 0]
+           (MSG,Angled facing isn't supported yet)
+        O10 return [-2] ; indicate failure to epilog
+        O10 endif
+
+        O100 if [#<facing_tool> NE #<_current_tool>]
+             (MSG,ERROR : Set tool before use macro)
+        O100 return [-2] ; indicate failure to epilog
+        O100 endif
+
+G7  ; diameter mode
+G18 ; XZ Plane
+G21 ; Metric Units
+G90 ; Absolute Distance
+
+#<starting_X> = [#<_x> * 2] (starting X)
+#<starting_Z> = #<_z> (starting Z)
+
+G96 D#<facing_maxrpm> S#<facing_ss> ; Constant Surface Speed Mode
+M3                ; Start Spindle
+G95 F#<facing_feed>  ; Feed-Per-Rev Mode
+G4P1              ; Wait to reach speed
+
+        O110 if [#<facing_coolant>]
+                M8
+        O110 endif
+
+(DEBUG,facing finish rad-#<facing_x> start rad-#<starting_X> start length-#<starting_Z> finish length-#<facing_z>)
+
+        O200 while [#<starting_Z> GT #<facing_z>+ #<facing_doc>]
+             #<starting_Z>=[#<starting_Z>-#<facing_doc>]
+             G1 Z#<starting_Z>
+             G1 X#<facing_x>
+             G0 Z[#<starting_Z>+#<facing_doc>]
+             G0 X#<starting_X>
+             G0 Z#<starting_Z>
+        O200 endwhile
+
+        G1 Z#<facing_z>
+        G1 X#<facing_x>
+        G0 Z[#<starting_Z>+#<facing_doc>]
+        G0 X[#<starting_X>+#<facing_doc>]
+        G0 Z#<facing_z>; For touch-off
+
+M5
+M9
+
+  o<backup_restore> call     ; restore g20/21, g90/g91, feedrate cuter-comp and other using now global _backup_var
+
+o<facing> endsub
+
+M2
+%

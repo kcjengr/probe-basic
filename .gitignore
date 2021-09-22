@@ -15,6 +15,7 @@
 *.halscope
 .tmp*
 .idea/
+.DS_Store
 *~
 *#
 
@@ -31,7 +32,7 @@ sim/*.old
 # debian packages
 *.deb
 
-# persistent data files 
+# persistent data files
 *messages.json
 *settings.json
 /.project

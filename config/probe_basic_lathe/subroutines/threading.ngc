@@ -1,0 +1,94 @@
+;threading
+o<threading> sub
+
+  o<backup_status> call
+
+#<threading_ss> = #1
+#<threading_maxrpm>= #2
+#<threading_feed>= #3
+#<threading_doc>= #4
+#<threading_tool>= #5
+#<threading_coolant>= #6
+#<threading_x>= #9
+#<threading_z>= #10
+#<threading_pitch>= #11
+#<threading_id>= #12
+
+
+#<surface_speed> = #<threading_ss>
+#<cut_size>      = #<threading_doc>
+
+
+        O100 if [#<threading_tool> NE #<_current_tool>]
+             (MSG,ERROR : Set tool before use macro)
+        O100 return [-2] ; indicate failure to epilog
+        O100 endif
+
+G8  ; Lathe radius Mode
+G18 ; XZ Plane
+G90 ; Absolute Distance
+
+#<threading_x> = [#<threading_x> / 2.0]
+#<starting_X> = [#<_x> * 2] (starting X)
+#<starting_Z> = #<_z> (starting Z)
+G96 D#<threading_maxrpm> S#<threading_feed> ; Constant Surface Speed Mode
+M3            ; Start Spindle
+G4 P1         ; Wait to reach speed
+
+        O110 if [#<threading_coolant>]
+                M8
+        O110 endif
+
+#<height> = [0.86603 * #<threading_pitch>]
+#<majorflat> = [#<height> * 0.125]
+#<minorflat> = [#<height> * 0.250]
+#<threaddepth> = [#<height> * 0.625]
+;(DEBUG,#<height> #<majorflat> #<minorflat> #<threaddepth>)
+
+        O200 if [#<_metric>]
+            #<cutdepth> = 0.2
+            #<flatfeed> = 0.1
+        O200 else
+            #<cutdepth> = 0.007
+            #<flatfeed> = 0.004
+        O200 endif
+
+G95 F#<flatfeed> ; Feed-Per-Rev Mode
+
+;Threading
+        O300 if [#<threading_id>GT 0.5] ;internal
+            ;cut the minor flat diameter
+            ;(DEBUG,INTERNAL Threading thread dia-#<threading_x> startZ-#<starting_Z> finishZ-#<threading_z> Pitch-#<threading_pitch> Tool-#<tool_number>)
+            G0 Z #<starting_Z>
+            G0 X [#<threading_x> + #<minorflat> - #<height>]
+            G1 Z #<threading_z>
+            G0 X [#<threading_x> - #<height>]
+            G0 Z #<starting_Z>
+            G96 D#<threading_maxrpm> S#<threading_feed> ; limit RPM in threading mode
+            G76 P#<threading_pitch> Z#<threading_z> i#<minorflat> j#<cutdepth> k#<threaddepth> H3 R1.5 Q29.5 E0 L0
+            G0 X [#<threading_x> - 0.5]
+        O300 else ;external
+            ; cut the major diameter
+            ;(DEBUG,EXTERNAL Threading thread dia-#<threading_x> startZ-#<starting_Z> finishZ-#<threading_z> Pitch-#<threading_pitch> Tool-#<tool_number> MF #<majorflat>)
+            G0 Z #<starting_Z>
+            G0 X #<threading_x>
+            G1 X [#<threading_x> - #<majorflat>]
+            G1 Z #<threading_z>
+            G0 X #<threading_x>
+            G0 Z #<starting_Z>
+            G96 D#<threading_maxrpm> S#<threading_feed> ; limit RPM in threading mode
+            G76 P#<threading_pitch> Z#<threading_z> i[-#<majorflat>] j#<cutdepth> k#<threaddepth> H3 R1.5 Q29.5 E0 L0
+            G0 X [#<threading_x> + 0.5]
+        O300 endif
+
+        G0 Z#<starting_Z>
+
+M5
+M9
+
+  o<backup_restore> call     ; restore g20/21, g90/g91, feedrate cuter-comp and other using now global _backup_var
+
+o<threading> endsub
+
+M2
+%

@@ -1,0 +1,21 @@
+o<backup_status> sub
+
+#<_backup_retract_old_z> = #<_retract_old_z>
+#<_backup_units_per_min> = #<_units_per_minute>
+#<_backup_plane>         = #<_plane>
+#<_backup_metric>        = #<_metric>
+#<_backup_absolute>      = #<_absolute>
+#<_backup_feed>          = #<_feed>
+#<_backup_ccomp>         = #<_ccomp>
+#<_backup_tool_offset>   = #<_tool_offset>
+#<_backup_coord_system>  = #<_coord_system>
+#<_backup_ijk_abs_mode>  = #<_ijk_absolute_mode>
+;o10 if [#<_ini[DISPLAY]LATHE> EQ 1]
+   #<_backup_lathe_diam_mode> = #<_lathe_diameter_mode>
+;   #<_backup_lathe_mode> = 1
+;o10 else
+;   #<_backup_lathe_mode> = 0
+;o10 endif
+
+o<backup_status> endsub
+M2

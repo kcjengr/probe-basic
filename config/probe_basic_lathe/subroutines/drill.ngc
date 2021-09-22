@@ -1,0 +1,85 @@
+;drill
+o<drill> sub
+
+  o<backup_status> call
+
+#<drill_diam>     = #1
+#<drill_depth>        = #2
+#<drill_ss>          = #3
+#<drill_feed>       = #4
+#<drill_tool>    = #5
+#<drill_peck>    = #6
+#<drill_coolant>        = #8
+#<drill_x>       = #9
+#<drill_doc>      = #10
+#<angles>        = 0
+#<drill_maxrpm>       = #11
+
+#<starting_z> = #<_z> (starting z)
+
+        O100 if [#<drill_tool> NE #<_current_tool>]
+             (MSG,ERROR : Set tool before use macro)
+        O100 return [-2] ; indicate failure to epilog
+        O100 endif
+
+G7  ; diameter mode
+G17 ; XY Plane
+G21 ; Metric Units
+G90 ; Absolute Distance
+G91.1 ; but not for arcs
+
+#<speed_calc> = [[1000 * #<drill_ss>] / [3.1415 * #<drill_diam>]] ; metric mode RPM
+
+G97 S#<speed_calc> ; Constant RPM mode
+M3                 ; Start Spindle
+G95 F#<drill_feed>   ; Feed-Per-Rev Mode
+G4 P1              ; Wait to reach speed
+
+        O110 if [#<drill_coolant>]
+                M8
+        O110 endif
+
+(DEBUG,Drilling dia-#<drill_diam> depth-#<drill_depth> asked-speed-#<drill_ss> feed/rpm-#<drill_feed> tool-#<tool_number> peck dist-#<drill_peck> full retract calculated-rpm-#<speed_calc> start-z-#<starting_z>)
+
+G98
+G0 X0 ; must drill from the centerline.  Tool should be zeroed here
+G83 Z#<drill_depth> R#<starting_z> Q#<drill_peck>
+G80
+
+O300 if[#<drill_x> gt #<drill_diam> ]
+     #<new_x> = [#<drill_x> - #<drill_diam>] ; because of drilldiameter and diameter mode
+
+     G96 D#<drill_maxrpm> S#<drill_ss> ; Constant Surface Speed Mode
+     M3            ; Start Spindle
+     G95 F#<drill_feed>       ; Feed-Per-Rev Mode
+     G4P1          ; Wait to reach speed
+G0 X0
+#<starting_X> = #<_x>
+     (DEBUG,Turning finish dia-#<drill_x> start rad-#<starting_X> start length-#<starting_Z> finish length-#<drill_depth>)
+
+        O400 while [#<starting_X> LT [#<new_x> - #<drill_doc>]]
+             G0 X #<starting_X>
+             #<starting_X>=[#<starting_X> + #<drill_doc>]
+             G1 X #<starting_X>
+             G1 Z #<drill_depth> X #<starting_X>
+             G1 X[#<starting_X> - #<drill_doc>]
+             G0 Z[#<starting_Z>]
+        O400 endwhile
+
+        G0 X#<new_x>
+        G1 Z#<drill_depth> X#<new_x>
+        G1 X[#<new_x> - #<drill_doc>]
+        G0 Z#<starting_Z>
+        G0 X#<new_x> ; For touch-off
+O300 endif
+
+M5
+M9
+
+o<backup_restore> call     ; restore g20/21, g90/g91, feedrate cuter-comp and other using now global _backup_var
+
+
+o<drill> endsub
+
+M2
+%
