@@ -20,9 +20,13 @@ override_dh_auto_install:
 	cp -r src/probe_basic/images/probe_basic_icon_lathe.png debian/python3-probe-basic/usr/share/icons/
 
 	# create configs directory if it doesn't exist
-	mkdir -p debian/python3-probe-basic/usr/share/configs/
+	mkdir -p debian/python3-probe-basic/usr/share/probe_basic/configs/
 	# Install the config file contents
-	cp -r configs debian/python3-probe-basic/usr/share/
+	cp -r linuxcnc/configs debian/python3-probe-basic/usr/share/probe_basic/
+	# create nc_files directory if it doesn't exist
+	mkdir -p debian/python3-probe-basic/usr/share/probe_basic/nc_files/
+	# Install the nc_file file contents
+	cp -r linuxcnc/nc_files debian/python3-probe-basic/usr/share/probe_basic/
 
 
 override_dh_install:

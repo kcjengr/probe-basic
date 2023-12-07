@@ -1,8 +1,0 @@
-o<probe_cal_reset> sub
-
-  #1000 = 0
-  (DEBUG, EVAL[vcp.getWidget{"calibration_offset"}.setValue{#1000}])
-
-o<probe_cal_reset> endsub
-
-M2 (end program)

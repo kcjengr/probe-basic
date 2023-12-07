@@ -13,7 +13,9 @@ sudo -u ${SUDO_USER:-$USER} mkdir -p "${TARGET_HOME}linuxcnc"
 sudo -u ${SUDO_USER:-$USER} mkdir -p "${TARGET_HOME}.local/usr/share/icons"
 
 # Copy the probe_basic_sims directory to the target directory
-sudo -u ${SUDO_USER:-$USER} cp -r /usr/share/configs "${TARGET_HOME}linuxcnc/"
+sudo -u ${SUDO_USER:-$USER} cp -r /usr/share/probe_basic/configs "${TARGET_HOME}linuxcnc/"
+# Copy only new subroutines to the target nc_files directory
+sudo -u ${SUDO_USER:-$USER} cp -r -n /usr/share/probe_basic/nc_files "${TARGET_HOME}linuxcnc/"
 
 # Copy the probe_basic icons directory to the target directory
 sudo -u ${SUDO_USER:-$USER} cp -r /usr/share/icons/probe_basic_icon.png "${TARGET_HOME}.local/usr/share/icons/"
