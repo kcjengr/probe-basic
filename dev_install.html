@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Probe Basic Development Installation &mdash; ProbeBasic  documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Probe Basic Parameters" href="probe_basic_parameters.html" />
+    <link rel="prev" title="Probe Basic .deb Install" href="quick_start.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            ProbeBasic
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Installation:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="stable_quick_start_apt.html">Probe Basic APT Stable Install</a></li>
+<li class="toctree-l1"><a class="reference internal" href="development_quick_start_apt.html">Probe Basic APT Develop Install</a></li>
+<li class="toctree-l1"><a class="reference internal" href="stable_develop_branch_change.html">Changing Stable &lt;-&gt; Develop Versions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="quick_start.html">Probe Basic .deb Install</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Probe Basic Development Installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#installation-steps">Installation Steps</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#getting-started-with-probe-basic-development">Getting Started with Probe Basic DEVELOPMENT</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#updating-qtpyvcp-and-probe-basic">Updating QtPyVCP and Probe Basic</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#uninstalling-qtpyvcp-and-probe-basic">Uninstalling QtPyVCP and Probe Basic</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#note">Note</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Configuration:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="probe_basic_parameters.html">Probe Basic Parameters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="machine_config.html">Machine Configuration (INI, HAL, Files)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="atc_setup.html">Carousel ATC Setup</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Interface:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="mill_interface.html">Mill</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lathe_interface.html">Lathe</a></li>
+<li class="toctree-l1"><a class="reference internal" href="probing.html">Probing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tool_length_setter.html">Tool Length Setter</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Extending:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="user_tabs.html">User Tabs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="custom_ux_hacking.html">Customisation with Python</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">ProbeBasic</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Probe Basic Development Installation</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/dev_install.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="probe-basic-development-installation">
+<h1>Probe Basic Development Installation<a class="headerlink" href="#probe-basic-development-installation" title="Permalink to this heading"></a></h1>
+<p>This Dev install method uses an installer script and will install QtPyVCP and Probe Basic into a virtual environment (venv) which is now a requirement for pip installations on systems running python version 3.11 which is what comes on Linux Debian 12 Bookworm. This has been tested to work on a clean install of debian 12 bookworm using the xfce4 option and nonfree firmware cdnetinst iso. Download and install the bookworm iso from the link below for your pc type, typically the amd64 on normal pc’s:</p>
+<p><a class="reference external" href="https://www.debian.org/releases/bookworm/debian-installer/">https://www.debian.org/releases/bookworm/debian-installer/</a></p>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>During Linux Bookworm installation, DO NOT set a root password when prompted, just press continue to move to the next section in the visual installer. Once installed, run all of your updating.</p>
+</div>
+<section id="installation-steps">
+<h2>Installation Steps<a class="headerlink" href="#installation-steps" title="Permalink to this heading"></a></h2>
+<blockquote>
+<div><ol class="arabic simple">
+<li><p>Download and Install linuxcnc from deb file choose Amd64 (PC’s) or Arm64 (Pi 4/5):</p></li>
+</ol>
+<p>Amd64 Deb (for PC’s):</p>
+<blockquote>
+<div><p><a class="reference external" href="https://www.linuxcnc.org/dists/bookworm/2.9-uspace/binary-amd64/linuxcnc-uspace_2.9.3_amd64.deb">https://www.linuxcnc.org/dists/bookworm/2.9-uspace/binary-amd64/linuxcnc-uspace_2.9.3_amd64.deb</a></p>
+</div></blockquote>
+<p>Arm64 Deb (for Pi 4/5)</p>
+<blockquote>
+<div><p><a class="reference external" href="https://www.linuxcnc.org/dists/bookworm/2.9-uspace/binary-arm64/linuxcnc-uspace_2.9.3_arm64.deb">https://www.linuxcnc.org/dists/bookworm/2.9-uspace/binary-arm64/linuxcnc-uspace_2.9.3_arm64.deb</a></p>
+</div></blockquote>
+<p>In a terminal, enter the following lines one at a time and press enter after each:</p>
+<blockquote>
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>~
+
+<span class="nb">cd</span><span class="w"> </span>Downloads
+
+sudo<span class="w"> </span>dpkg<span class="w"> </span>-i<span class="w"> </span>linuxcnc-uspace_2.9.3_amd64.deb
+</pre></div>
+</div>
+</div></blockquote>
+<ol class="arabic" start="2">
+<li><p>Next restart your computer</p></li>
+<li><p>Ensure git is installed:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>git
+</pre></div>
+</div>
+</li>
+<li><p>Ensure zenity is installed:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>zenity
+</pre></div>
+</div>
+</li>
+<li><p>Create a directory and clone the repo to it. Either clone or download a zip file:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>~
+mkdir<span class="w"> </span>dev
+<span class="nb">cd</span><span class="w"> </span>dev
+git<span class="w"> </span>clone<span class="w"> </span>https://github.com/Lcvette/qtpyvcp-bookworm-installer.git
+<span class="nb">cd</span><span class="w"> </span>qtpyvcp-bookworm-installer
+./install_for_qtpyvcp.sh
+</pre></div>
+</div>
+</li>
+</ol>
+</div></blockquote>
+</section>
+<section id="getting-started-with-probe-basic-development">
+<h2>Getting Started with Probe Basic DEVELOPMENT<a class="headerlink" href="#getting-started-with-probe-basic-development" title="Permalink to this heading"></a></h2>
+<blockquote>
+<div><p>You should now see a series of icons on your desktop, 3 probe basic mill instances consisting of an inch/metric/atc sim and 1 lathe sim instance.  There should also be 2 qtpyvcp icons, one for mill and one for lathe. These icons must be used to enter QTdesigner for your develpment work.  To test your edits in QTdesigner you must use the desktop launcher icons provided to start and run your instance of probe basic sim.  This is required due to python3 requiring to be run in a VENV (virtual environment).  Do not use the application drop down to run linuxcnc or you will not see your changes from your dev efforts.  The changes will be saved in the dev folder files.  When you have completed your edits and wish to create a .deb build file, you can follow the instructions under creating a .deb installation file in the probe basic instruction docs. (coming soon).</p>
+</div></blockquote>
+</section>
+<section id="updating-qtpyvcp-and-probe-basic">
+<h2>Updating QtPyVCP and Probe Basic<a class="headerlink" href="#updating-qtpyvcp-and-probe-basic" title="Permalink to this heading"></a></h2>
+<blockquote>
+<div><p>To update QtPyVCP and Probe Basic, from terminal in the installer directory file, run the following script command:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>./updater.sh
+</pre></div>
+</div>
+</div></blockquote>
+</section>
+<section id="uninstalling-qtpyvcp-and-probe-basic">
+<h2>Uninstalling QtPyVCP and Probe Basic<a class="headerlink" href="#uninstalling-qtpyvcp-and-probe-basic" title="Permalink to this heading"></a></h2>
+<blockquote>
+<div><p>To uninstall QtPyVCP and Probe Basic, delete the <strong>/home/(your_pc_name)/dev</strong> folder. Since this is a venv run in place install, it is removed once the directory is deleted.</p>
+</div></blockquote>
+</section>
+<section id="note">
+<h2>Note<a class="headerlink" href="#note" title="Permalink to this heading"></a></h2>
+<blockquote>
+<div><p>Files that must be executable:</p>
+<ul class="simple">
+<li><p>install_for_qtpyvcp.sh</p></li>
+<li><p>sudo_helper.sh</p></li>
+<li><p>updater.sh</p></li>
+</ul>
+</div></blockquote>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="quick_start.html" class="btn btn-neutral float-left" title="Probe Basic .deb Install" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="probe_basic_parameters.html" class="btn btn-neutral float-right" title="Probe Basic Parameters" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021, Chris Polanski.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

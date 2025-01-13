@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Changing Stable &lt;-&gt; Develop Versions &mdash; ProbeBasic  documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Probe Basic .deb Install" href="quick_start.html" />
+    <link rel="prev" title="Probe Basic APT Develop Install" href="development_quick_start_apt.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            ProbeBasic
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Installation:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="stable_quick_start_apt.html">Probe Basic APT Stable Install</a></li>
+<li class="toctree-l1"><a class="reference internal" href="development_quick_start_apt.html">Probe Basic APT Develop Install</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Changing Stable &lt;-&gt; Develop Versions</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#probe-basic-stable-and-develop-version-information">Probe Basic STABLE and DEVELOP Version Information</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#step-by-step-guide-to-change-the-sources-list-for-stable-and-develop-apt-repository">Step-by-Step Guide to Change the Sources List for Stable and Develop APT Repository</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#edit-the-sources-list">1. Edit the sources list</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#modify-the-repository">2. Modify the repository</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#save-changes">3. Save changes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#uninstall-current-probe-basic">4. Uninstall current Probe Basic</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#install-probe-basic-and-qtpyvcp">5. Install Probe Basic and QtPyVCP</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#update-and-upgrade">6. Update and upgrade</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#important-note">7. Important Note</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#troubleshooting-and-support">Troubleshooting and Support</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="quick_start.html">Probe Basic .deb Install</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dev_install.html">Probe Basic Development Installation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Configuration:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="probe_basic_parameters.html">Probe Basic Parameters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="machine_config.html">Machine Configuration (INI, HAL, Files)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="atc_setup.html">Carousel ATC Setup</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Interface:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="mill_interface.html">Mill</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lathe_interface.html">Lathe</a></li>
+<li class="toctree-l1"><a class="reference internal" href="probing.html">Probing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tool_length_setter.html">Tool Length Setter</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Extending:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="user_tabs.html">User Tabs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="custom_ux_hacking.html">Customisation with Python</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">ProbeBasic</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Changing Stable &lt;-&gt; Develop Versions</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/stable_develop_branch_change.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="changing-stable-develop-versions">
+<h1>Changing Stable &lt;-&gt; Develop Versions<a class="headerlink" href="#changing-stable-develop-versions" title="Permalink to this heading"></a></h1>
+<section id="probe-basic-stable-and-develop-version-information">
+<h2>Probe Basic STABLE and DEVELOP Version Information<a class="headerlink" href="#probe-basic-stable-and-develop-version-information" title="Permalink to this heading"></a></h2>
+<blockquote>
+<div><p>Probe Basic now has STABLE and DEVELOP repositories from which users can select for apt updates. You can switch between repositories to test new and upcoming features, but must understand that the development repository will be a testing version. As such, it may be subject to bugs. If you select the develop branch, please be sure to report any bugs either on the forum or on git.</p>
+</div></blockquote>
+</section>
+<section id="step-by-step-guide-to-change-the-sources-list-for-stable-and-develop-apt-repository">
+<h2>Step-by-Step Guide to Change the Sources List for Stable and Develop APT Repository<a class="headerlink" href="#step-by-step-guide-to-change-the-sources-list-for-stable-and-develop-apt-repository" title="Permalink to this heading"></a></h2>
+<section id="edit-the-sources-list">
+<h3>1. Edit the sources list<a class="headerlink" href="#edit-the-sources-list" title="Permalink to this heading"></a></h3>
+<blockquote>
+<div><p>Type or copy and paste the following line in a terminal, press ENTER, and type in your sudo password when prompted:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>nano<span class="w"> </span>/etc/apt/sources.list.d/kcjengr.list
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="_images/pb_sources_list.png"><img alt="_images/pb_sources_list.png" class="align-center" src="_images/pb_sources_list.png" style="width: 533.6px; height: 196.0px;" /></a>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+</div></blockquote>
+</section>
+<section id="modify-the-repository">
+<h3>2. Modify the repository<a class="headerlink" href="#modify-the-repository" title="Permalink to this heading"></a></h3>
+<blockquote>
+<div><p>Edit the source list line to set the apt repository for either STABLE or DEVELOP version of Probe Basic:</p>
+<a class="reference internal image-reference" href="_images/nano_sources_list.png"><img alt="_images/nano_sources_list.png" class="align-center" src="_images/nano_sources_list.png" style="width: 565.6px; height: 196.0px;" /></a>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<a class="reference internal image-reference" href="_images/nano_sources_list_edited.png"><img alt="_images/nano_sources_list_edited.png" class="align-center" src="_images/nano_sources_list_edited.png" style="width: 565.6px; height: 196.0px;" /></a>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+</div></blockquote>
+</section>
+<section id="save-changes">
+<h3>3. Save changes<a class="headerlink" href="#save-changes" title="Permalink to this heading"></a></h3>
+<blockquote>
+<div><p>Exit and save the changes by pressing CTRL + X, then Y, then ENTER:</p>
+<a class="reference internal image-reference" href="_images/yes_nano_to_save.png"><img alt="_images/yes_nano_to_save.png" class="align-center" src="_images/yes_nano_to_save.png" style="width: 565.6px; height: 196.0px;" /></a>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<a class="reference internal image-reference" href="_images/enter_nano_file_save_name.png"><img alt="_images/enter_nano_file_save_name.png" class="align-center" src="_images/enter_nano_file_save_name.png" style="width: 565.6px; height: 196.0px;" /></a>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+</div></blockquote>
+</section>
+<section id="uninstall-current-probe-basic">
+<h3>4. Uninstall current Probe Basic<a class="headerlink" href="#uninstall-current-probe-basic" title="Permalink to this heading"></a></h3>
+<blockquote>
+<div><p>Run the following commands in terminal to uninstall the current installation of Probe Basic:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>dpkg<span class="w"> </span>-P<span class="w"> </span>python3-probe-basic
+sudo<span class="w"> </span>dpkg<span class="w"> </span>-P<span class="w"> </span>python3-qtpyvcp
+</pre></div>
+</div>
+</div></blockquote>
+</section>
+<section id="install-probe-basic-and-qtpyvcp">
+<h3>5. Install Probe Basic and QtPyVCP<a class="headerlink" href="#install-probe-basic-and-qtpyvcp" title="Permalink to this heading"></a></h3>
+<blockquote>
+<div><p>Run the following commands in terminal to install Probe Basic and QtPyVCP:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>python3-qtpyvcp
+sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>python3-probe-basic
+</pre></div>
+</div>
+</div></blockquote>
+</section>
+<section id="update-and-upgrade">
+<h3>6. Update and upgrade<a class="headerlink" href="#update-and-upgrade" title="Permalink to this heading"></a></h3>
+<blockquote>
+<div><p>Run apt update/upgrade by copying the following commands in the main terminal one line at a time. Select Y for yes if asked at any point during the update:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>apt<span class="w"> </span>update
+sudo<span class="w"> </span>apt<span class="w"> </span>upgrade
+</pre></div>
+</div>
+</div></blockquote>
+</section>
+<section id="important-note">
+<h3>7. Important Note<a class="headerlink" href="#important-note" title="Permalink to this heading"></a></h3>
+<blockquote>
+<div><p>The development versions will likely require edits, additions or updates to config files. These include but are not limited to the yaml, ini, hal, subroutine, python, and any other supporting configuration files. These changes may not always be fully documented as we test them and are making changes, so we urge users to be aware that the development version should be used in a testing environment only. Those wishing to retain stability in operational use should change to the STABLE version.</p>
+</div></blockquote>
+</section>
+</section>
+<section id="troubleshooting-and-support">
+<h2>Troubleshooting and Support<a class="headerlink" href="#troubleshooting-and-support" title="Permalink to this heading"></a></h2>
+<blockquote>
+<div><p>For bug reporting, general assistance, or troubleshooting, visit the QtPyVCP section of the LinuxCNC forum:</p>
+<p><a class="reference external" href="https://forum.linuxcnc.org/qtpyvcp">https://forum.linuxcnc.org/qtpyvcp</a></p>
+</div></blockquote>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="development_quick_start_apt.html" class="btn btn-neutral float-left" title="Probe Basic APT Develop Install" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="quick_start.html" class="btn btn-neutral float-right" title="Probe Basic .deb Install" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021, Chris Polanski.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
