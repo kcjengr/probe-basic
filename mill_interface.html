@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Probe Basic Mill Interface &mdash; ProbeBasic  documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Probe Basic Lathe Interface" href="lathe_interface.html" />
+    <link rel="prev" title="Carousel ATC Setup" href="atc_setup.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            ProbeBasic
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Installation:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="stable_quick_start_apt.html">Probe Basic APT Stable Install</a></li>
+<li class="toctree-l1"><a class="reference internal" href="development_quick_start_apt.html">Probe Basic APT Develop Install</a></li>
+<li class="toctree-l1"><a class="reference internal" href="stable_develop_branch_change.html">Changing Stable &lt;-&gt; Develop Versions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="quick_start.html">Probe Basic .deb Install</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dev_install.html">Probe Basic Development Installation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Configuration:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="probe_basic_parameters.html">Probe Basic Parameters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="machine_config.html">Machine Configuration (INI, HAL, Files)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="atc_setup.html">Carousel ATC Setup</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Interface:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Mill</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#main">Main</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#gcode">GCODE</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#mdi">MDI</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#file">File</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#atc">ATC</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#tool">Tool</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#offsets">Offsets</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#probing">Probing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#conversational">Conversational</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#facing">Facing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#holes">Holes</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#pattern">Pattern</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#xy-coord">XY Coord</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#settings">Settings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#status">Status</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="lathe_interface.html">Lathe</a></li>
+<li class="toctree-l1"><a class="reference internal" href="probing.html">Probing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tool_length_setter.html">Tool Length Setter</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Extending:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="user_tabs.html">User Tabs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="custom_ux_hacking.html">Customisation with Python</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">ProbeBasic</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Probe Basic Mill Interface</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/mill_interface.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="probe-basic-mill-interface">
+<h1>Probe Basic Mill Interface<a class="headerlink" href="#probe-basic-mill-interface" title="Permalink to this heading"></a></h1>
+<section id="main">
+<h2>Main<a class="headerlink" href="#main" title="Permalink to this heading"></a></h2>
+<section id="gcode">
+<h3>GCODE<a class="headerlink" href="#gcode" title="Permalink to this heading"></a></h3>
+<img alt="_images/01_Main1.png" class="align-center" src="_images/01_Main1.png" />
+</section>
+<section id="mdi">
+<h3>MDI<a class="headerlink" href="#mdi" title="Permalink to this heading"></a></h3>
+<img alt="_images/01_Main_MDI.png" class="align-center" src="_images/01_Main_MDI.png" />
+</section>
+</section>
+<section id="file">
+<h2>File<a class="headerlink" href="#file" title="Permalink to this heading"></a></h2>
+<img alt="_images/02_File1.png" class="align-center" src="_images/02_File1.png" />
+</section>
+<section id="atc">
+<h2>ATC<a class="headerlink" href="#atc" title="Permalink to this heading"></a></h2>
+<img alt="_images/03_ATC.png" class="align-center" src="_images/03_ATC.png" />
+</section>
+<section id="tool">
+<h2>Tool<a class="headerlink" href="#tool" title="Permalink to this heading"></a></h2>
+<img alt="_images/04_Tool.png" class="align-center" src="_images/04_Tool.png" />
+</section>
+<section id="offsets">
+<h2>Offsets<a class="headerlink" href="#offsets" title="Permalink to this heading"></a></h2>
+<img alt="_images/05_Offsets.png" class="align-center" src="_images/05_Offsets.png" />
+</section>
+<section id="probing">
+<h2>Probing<a class="headerlink" href="#probing" title="Permalink to this heading"></a></h2>
+<img alt="_images/06_Probing1.png" class="align-center" src="_images/06_Probing1.png" />
+<p><a class="reference internal" href="probing.html"><span class="doc">Probing Help</span></a></p>
+</section>
+<section id="conversational">
+<h2>Conversational<a class="headerlink" href="#conversational" title="Permalink to this heading"></a></h2>
+<section id="facing">
+<h3>Facing<a class="headerlink" href="#facing" title="Permalink to this heading"></a></h3>
+<img alt="_images/07_Conversational_Facing.png" class="align-center" src="_images/07_Conversational_Facing.png" />
+</section>
+<section id="holes">
+<h3>Holes<a class="headerlink" href="#holes" title="Permalink to this heading"></a></h3>
+<section id="pattern">
+<h4>Pattern<a class="headerlink" href="#pattern" title="Permalink to this heading"></a></h4>
+<img alt="_images/07_Conversational_Hole_Ops_Pattern.png" class="align-center" src="_images/07_Conversational_Hole_Ops_Pattern.png" />
+</section>
+<section id="xy-coord">
+<h4>XY Coord<a class="headerlink" href="#xy-coord" title="Permalink to this heading"></a></h4>
+<img alt="_images/07_Conversational_Hole_Ops_XY_Coord.png" class="align-center" src="_images/07_Conversational_Hole_Ops_XY_Coord.png" />
+</section>
+</section>
+</section>
+<section id="settings">
+<h2>Settings<a class="headerlink" href="#settings" title="Permalink to this heading"></a></h2>
+<img alt="_images/08_Settings1.png" class="align-center" src="_images/08_Settings1.png" />
+</section>
+<section id="status">
+<h2>Status<a class="headerlink" href="#status" title="Permalink to this heading"></a></h2>
+<img alt="_images/09_Status.png" class="align-center" src="_images/09_Status.png" />
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="atc_setup.html" class="btn btn-neutral float-left" title="Carousel ATC Setup" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="lathe_interface.html" class="btn btn-neutral float-right" title="Probe Basic Lathe Interface" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021, Chris Polanski.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
