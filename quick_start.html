@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Probe Basic .deb Install &mdash; ProbeBasic  documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Probe Basic Development Installation" href="dev_install.html" />
+    <link rel="prev" title="Changing Stable &lt;-&gt; Develop Versions" href="stable_develop_branch_change.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            ProbeBasic
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Installation:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="stable_quick_start_apt.html">Probe Basic APT Stable Install</a></li>
+<li class="toctree-l1"><a class="reference internal" href="development_quick_start_apt.html">Probe Basic APT Develop Install</a></li>
+<li class="toctree-l1"><a class="reference internal" href="stable_develop_branch_change.html">Changing Stable &lt;-&gt; Develop Versions</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Probe Basic .deb Install</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#important-requirements">Important Requirements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#download-the-linux-debian-12-bookworm-iso-image-file">Download the Linux Debian 12 Bookworm ISO Image File</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#installation-steps">Installation Steps</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#installing-probe-basic">Installing Probe Basic</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#installation-commands">Installation Commands</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#uninstallation">Uninstallation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="dev_install.html">Probe Basic Development Installation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Configuration:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="probe_basic_parameters.html">Probe Basic Parameters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="machine_config.html">Machine Configuration (INI, HAL, Files)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="atc_setup.html">Carousel ATC Setup</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Interface:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="mill_interface.html">Mill</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lathe_interface.html">Lathe</a></li>
+<li class="toctree-l1"><a class="reference internal" href="probing.html">Probing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tool_length_setter.html">Tool Length Setter</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Extending:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="user_tabs.html">User Tabs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="custom_ux_hacking.html">Customisation with Python</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">ProbeBasic</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Probe Basic .deb Install</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/quick_start.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="probe-basic-deb-install">
+<h1>Probe Basic .deb Install<a class="headerlink" href="#probe-basic-deb-install" title="Permalink to this heading"></a></h1>
+<p><strong>Probe Basic .deb Installation Guide for use with Debian Bookworm and LinuxCNC version 2.9 or Later</strong></p>
+<section id="important-requirements">
+<h2>Important Requirements<a class="headerlink" href="#important-requirements" title="Permalink to this heading"></a></h2>
+<blockquote>
+<div><ul class="simple">
+<li><p>The Deb file install in this doc page is intended for AMD64 pc installs only, do not try to use for arm64/pi installs.</p></li>
+<li><p>Probe Basic is currently designed for 1920x1080 screen sizes only!</p></li>
+<li><p>Probe Basic requires graphics hardware that supports OpenGL 3.2 and OpenGL Shading Language (GLSL) 1.50 or later</p></li>
+<li><p>Probe Basic is tested on xfce4, during install of Debian 12 ISO:</p></li>
+<li><p>DO NOT enter a Root password during installation, leave blank and skip this page.</p></li>
+</ul>
+<p>During installation, this screen below will appear, be sure to uncheck gnome and check xfce as pictured below. No other changes on this page are needed.</p>
+<img alt="_images/xfce_check_doc.png" class="align-center" src="_images/xfce_check_doc.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+</div></blockquote>
+</section>
+<section id="download-the-linux-debian-12-bookworm-iso-image-file">
+<h2>Download the Linux Debian 12 Bookworm ISO Image File<a class="headerlink" href="#download-the-linux-debian-12-bookworm-iso-image-file" title="Permalink to this heading"></a></h2>
+<blockquote>
+<div><p>Download from: <a class="reference external" href="https://www.debian.org/download">https://www.debian.org/download</a></p>
+<p>Select the Linux Debian 12 Bookworm Netinst CD ISO from the above link. You will need to make a bootable DVD or USB thumb drive depending on how you plan to install. The software below is extremely easy and works flawlessly with Linux Debian OS images:</p>
+<p><a class="reference external" href="https://www.balena.io/etcher/?ref=etcher_update">https://www.balena.io/etcher/?ref=etcher_update</a></p>
+<p>We recommend using a 2-4GB USB drive for quicker flashing.</p>
+</div></blockquote>
+</section>
+<section id="installation-steps">
+<h2>Installation Steps<a class="headerlink" href="#installation-steps" title="Permalink to this heading"></a></h2>
+<blockquote>
+<div><ol class="arabic">
+<li><p>Create your flash stick for LinuxCNC and proceed to install and boot the system. (Note: It is advised to have an ethernet cable internet connection during install).</p></li>
+<li><p>Select the graphical installation option.</p></li>
+<li><p>Follow the steps on screen to complete installation.</p></li>
+<li><p>When you reach the Linux Desktop Selection Page, uncheck the GNOME option and check the XFCE4 option.</p></li>
+<li><p>After installation, open the main terminal and run the following commands:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>apt<span class="w"> </span>update
+sudo<span class="w"> </span>apt<span class="w"> </span>upgrade
+</pre></div>
+</div>
+</li>
+</ol>
+</div></blockquote>
+</section>
+<section id="installing-probe-basic">
+<h2>Installing Probe Basic<a class="headerlink" href="#installing-probe-basic" title="Permalink to this heading"></a></h2>
+<blockquote>
+<div><blockquote>
+<div><p>Requirements:</p>
+<ul class="simple">
+<li><p>Debian 12 Bookworm</p></li>
+<li><p>Python 3.11</p></li>
+<li><p>LinuxCNC 2.9 or higher</p></li>
+<li><p>xfce4 desktop environment</p></li>
+<li><p>OpenGL 1.50 or Later graphics support</p></li>
+<li><p>QtPyVCP</p></li>
+<li><p>hiyapyco</p></li>
+</ul>
+</div></blockquote>
+<p>Download and Install linuxcnc from deb file:</p>
+<blockquote>
+<div><blockquote>
+<div><p><a class="reference external" href="https://www.linuxcnc.org/dists/bookworm/2.9-uspace/binary-amd64/linuxcnc-uspace_2.9.3_amd64.deb">https://www.linuxcnc.org/dists/bookworm/2.9-uspace/binary-amd64/linuxcnc-uspace_2.9.3_amd64.deb</a></p>
+</div></blockquote>
+<p>In a terminal, enter the following lines one at a time and press enter after each:</p>
+<blockquote>
+<div><blockquote>
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>~
+
+<span class="nb">cd</span><span class="w"> </span>Downloads
+
+sudo<span class="w"> </span>dpkg<span class="w"> </span>-i<span class="w"> </span>linuxcnc-uspace_2.9.3_amd64.deb
+</pre></div>
+</div>
+</div></blockquote>
+<p>Once you have installed LinuxCNC, open it and start the axis sim briefly and then shut it down to ensure the installation was successful.</p>
+<p>Download the following files:</p>
+<pre class="literal-block"><a class="reference external" href="https://repository.qtpyvcp.com/repo/probe-basic-dev/python3-probe-basic_0.6.0-40.dev_amd64.deb">https://repository.qtpyvcp.com/repo/probe-basic-dev/python3-probe-basic_0.6.0-40.dev_amd64.deb</a>
+
+<a class="reference external" href="https://repository.qtpyvcp.com/repo/qtpyvcp-dev/python3-qtpyvcp_5.0.2-5.dev_amd64.deb">https://repository.qtpyvcp.com/repo/qtpyvcp-dev/python3-qtpyvcp_5.0.2-5.dev_amd64.deb</a>
+
+<a class="reference external" href="https://repository.qtpyvcp.com/repo/hiyapyco/python3-hiyapyco_0.5.1-1_all.deb">https://repository.qtpyvcp.com/repo/hiyapyco/python3-hiyapyco_0.5.1-1_all.deb</a></pre>
+</div></blockquote>
+</div></blockquote>
+</div></blockquote>
+</section>
+<section id="installation-commands">
+<h2>Installation Commands<a class="headerlink" href="#installation-commands" title="Permalink to this heading"></a></h2>
+<blockquote>
+<div><p>Navigate to the download directory, right-click, and select “Open Terminal Here”. Run the following commands:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>debhelper-compat<span class="w"> </span>dh-python<span class="w"> </span>python3-setuptools<span class="w"> </span>python3-yaml<span class="w"> </span>python3-pyqt5.qtmultimedia<span class="w"> </span>python3-pyqt5.qtquick<span class="w"> </span>qml-module-qtquick-controls<span class="w"> </span>libqt5multimedia5-plugins<span class="w"> </span>python3-dev<span class="w"> </span>python3-docopt<span class="w"> </span>python3-qtpy<span class="w"> </span>python3-pyudev<span class="w"> </span>python3-psutil<span class="w"> </span>python3-markupsafe<span class="w"> </span>python3-vtk9<span class="w"> </span>python3-pyqtgraph<span class="w"> </span>python3-simpleeval<span class="w"> </span>python3-jinja2<span class="w"> </span>python3-deepdiff<span class="w"> </span>python3-sqlalchemy<span class="w"> </span>qttools5-dev-tools<span class="w"> </span>python3-serial
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">dpkg</span> <span class="o">-</span><span class="n">i</span> <span class="n">python3</span><span class="o">-</span><span class="n">hiyapyco_0</span><span class="mf">.5.1</span><span class="o">-</span><span class="mi">1</span><span class="n">_all</span><span class="o">.</span><span class="n">deb</span>
+</pre></div>
+</div>
+<pre class="literal-block">sudo dpkg -i python3-qtpyvcp_5.0.2-5.dev_amd64.deb</pre>
+<pre class="literal-block">sudo dpkg -i python3-probe-basic_0.6.0-40.dev_amd64.deb</pre>
+<p>You should now be able to launch the Probe Basic sim from within the LinuxCNC applications dropdown menu.</p>
+<p>Note: When updating/installing the latest .deb files, the Probe Basic sim configuration files will be overwritten. It is strongly recommended to create your machine configuration files with unique names to avoid having them overwritten during updates.</p>
+<p>To build your own machine configuration, please follow the Machine Config section of the docs.</p>
+</div></blockquote>
+</section>
+<section id="uninstallation">
+<h2>Uninstallation<a class="headerlink" href="#uninstallation" title="Permalink to this heading"></a></h2>
+<blockquote>
+<div><p>To uninstall, enter the following commands in the main terminal:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>dpkg<span class="w"> </span>-P<span class="w"> </span>python3-probe-basic
+
+sudo<span class="w"> </span>dpkg<span class="w"> </span>-P<span class="w"> </span>python3-qtpyvcp
+
+sudo<span class="w"> </span>dpkg<span class="w"> </span>-P<span class="w"> </span>python3-hiyapyco
+</pre></div>
+</div>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+</div></blockquote>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="stable_develop_branch_change.html" class="btn btn-neutral float-left" title="Changing Stable &lt;-&gt; Develop Versions" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="dev_install.html" class="btn btn-neutral float-right" title="Probe Basic Development Installation" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021, Chris Polanski.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

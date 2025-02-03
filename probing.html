@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Probing &mdash; ProbeBasic  documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Tool Length Setter" href="tool_length_setter.html" />
+    <link rel="prev" title="Probe Basic Lathe Interface" href="lathe_interface.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            ProbeBasic
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Installation:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="stable_quick_start_apt.html">Probe Basic APT Stable Install</a></li>
+<li class="toctree-l1"><a class="reference internal" href="development_quick_start_apt.html">Probe Basic APT Develop Install</a></li>
+<li class="toctree-l1"><a class="reference internal" href="stable_develop_branch_change.html">Changing Stable &lt;-&gt; Develop Versions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="quick_start.html">Probe Basic .deb Install</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dev_install.html">Probe Basic Development Installation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Configuration:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="probe_basic_parameters.html">Probe Basic Parameters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="machine_config.html">Machine Configuration (INI, HAL, Files)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="atc_setup.html">Carousel ATC Setup</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Interface:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="mill_interface.html">Mill</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lathe_interface.html">Lathe</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Probing</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#probing-setup">Probing Setup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#calibrating-your-touch-probe">Calibrating your Touch Probe</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#work-offsets">Work Offsets</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#parameters">Parameters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#probe-results">Probe Results</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#probing-routines">Probing Routines</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#help">Help</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="tool_length_setter.html">Tool Length Setter</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Extending:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="user_tabs.html">User Tabs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="custom_ux_hacking.html">Customisation with Python</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">ProbeBasic</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Probing</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/probing.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="probing">
+<h1>Probing<a class="headerlink" href="#probing" title="Permalink to this heading"></a></h1>
+<p>Probe Basic has a number of included probing routines.</p>
+<img alt="_images/06_Probing1.png" class="align-center" src="_images/06_Probing1.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<section id="probing-setup">
+<h2>Probing Setup<a class="headerlink" href="#probing-setup" title="Permalink to this heading"></a></h2>
+<blockquote>
+<div><ol class="arabic simple">
+<li><p>To begin probing, you first need to make sure you have connected <code class="docutils literal notranslate"><span class="pre">motion.probe-input</span></code> in your HAL file.</p></li>
+<li><p>Next, add an entry in your Tool Table for the probe, including the tip diameter. The default recommended tool number is 99. (Finding the probe tool length offset will be covered below)</p></li>
+<li><p>Enter the Probing Parameters on the Probing Page. A description for these can be found on the probing help tab or below in the docs.</p></li>
+<li><p>Setting the touch probe tool length offset. The way I prefer to find the touch probe tool length offset is as follows:</p>
+<ol class="loweralpha simple">
+<li><p>Use a facemill and measure the tool length of the facemill either by the tool setter or with a manual tool setter.</p></li>
+<li><p>Once the facemill tool data is measured, entered, and stored in the tool table, load it in the spindle with the LOAD TOOL feature on the tooling page.</p></li>
+<li><p>Mount a piece of scrap stock in the machine vise or on the table where it can be faced.</p></li>
+<li><p>Face the stock to have a true flat surface. Do not move the z axis once faced.</p></li>
+<li><p>Press the ZERO Z button in the DRO section of the interface. This will record the z work offset with the facemill’s tool length offset applied. Move the spindle to a safe distance to remove the tool.</p></li>
+<li><p>Use the UNLOAD SPINDLE button on the tooling page and remove the facemill from the spindle.</p></li>
+<li><p>Load the probe tool in the spindle. Make sure the tool length offset in the tool table is set to 0.0000.</p></li>
+<li><p>Ensure all of the probe parameters have been set correctly, and move the probe over the faced surface of the stock.</p></li>
+<li><p>Use the “PROBE POSITION ONLY” button on the probe page. This will find the surface without resetting the offset.</p></li>
+<li><p>Press the Probe Z button on the probing page to probe the faced surface of the stock. The probed result for Z- PROBED will be the tool length offset for the touch probe. The number used will be absolute, no +/- sign entered as all tool length offsets are relative to the spindle nose gage line.</p></li>
+<li><p>Enter the absolute value in the probe tool length offset in the tool table, save and reload the tool table.</p></li>
+<li><p>Verify the tool length offset is correct by loading the probe tool using the LOAD SPINDLE button and probing the face of the stock again.</p></li>
+<li><p>The Z- PROBED result should show a probed position of 0.0000. This verifies that the probed surface from the facemill and the probed point are the same with tool length offsets applied, which is what we want.</p></li>
+</ol>
+</li>
+<li><p>Now that the probe has been set up in software and in the tool table, we need to calibrate it for the most accurate results. This will be covered in the calibration section below.</p></li>
+</ol>
+</div></blockquote>
+</section>
+<section id="calibrating-your-touch-probe">
+<h2>Calibrating your Touch Probe<a class="headerlink" href="#calibrating-your-touch-probe" title="Permalink to this heading"></a></h2>
+<blockquote>
+<div><p>Probe Basic has a built-in probe calibration feature function which makes the calibration and calculations painless. Requirements are a precision gage pin or gage ring of known size mounted securely to the table.</p>
+<p>The software calibration assumes that you have mechanically zeroed the probe’s stylus tip in the spindle and it has a TIR that meets your tolerance requirements. Ideally, 0.0000 TIR is the goal, but this may not always be possible.</p>
+<p>As most probes require a small deflection of the tip before tripping, <strong>PROBE CALIBRATION OFFSET</strong> is used to account for this and can be set using these calibration routines and an accurately measured standard gauge.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Calibration video from Lcvette <a class="reference external" href="https://youtu.be/Qr9L6dyXf2A">https://youtu.be/Qr9L6dyXf2A</a></p>
+</div>
+<ol class="arabic simple">
+<li><p>Select the CALIBRATE tab in Probe Basic.</p></li>
+<li><p>Enter the gage ring or gauge pin diameter in the CALIBRATION DIAMETER dialog box.</p></li>
+<li><p>Move the probe over the gage pin or gage ring as shown in the probe button graphic for which type is being used. The starting position for the probe routine should match the pink tip in the graphic. The probe should be slightly above the gage object as a z minus move is the first move.</p></li>
+<li><p>Select the appropriate probing button that corresponds to your gage ring or pin and press it.</p></li>
+<li><p>The probe routine should complete and afterwards will populate the PROBE CALIBRATION OFFSET box. This value will be used to account for the probe’s trigger distance.</p></li>
+<li><p>Important notes: the probe feedrates will directly affect the trigger distance and the same feedrates used during calibration should be used in all subsequent probing.</p></li>
+<li><p>Move the probe to the previous starting position, and press the PROBE POSITION ONLY button.</p></li>
+<li><p>Select the BOSS AND POCKET probe tab.</p></li>
+<li><p>Select the same probe routine type for boss or pocket that was used in the calibration routine, and press it.</p></li>
+<li><p>The results should show a diameter that now matches the gage ring or within the tolerance that the machine is capable of probing.</p></li>
+<li><p>If the results do not match the gage ring known diameter, you can verify the stylus ball diameter is correct in the tool table, and try changing the speeds at which you probe. Then rerun the calibration routine above until your results are acceptable for your needs.</p></li>
+</ol>
+</div></blockquote>
+</section>
+<section id="work-offsets">
+<h2>Work Offsets<a class="headerlink" href="#work-offsets" title="Permalink to this heading"></a></h2>
+<blockquote>
+<div><img alt="_images/probe_00_work_offsets.png" class="align-center" src="_images/probe_00_work_offsets.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>This area allows you to select a Workpiece Coordinate Offset (WCO) and if it is to be updated as a result of probing.</p>
+<dl>
+<dt>G5x:</dt><dd><p>Set the active Workpiece Coordinate Offset, which may be updated.</p>
+</dd>
+<dt>PROBE POSITION ONLY:</dt><dd><p>This button when active (BLUE) will NOT set the currently active work offset to zero when a probe event occurs. It will record the probed positions and calculate Diameter, and X Y probe widths along with the Z position probed. This is useful for measuring or reverse engineering objects by using the probe tool.</p>
+<p>When not active, all probe events will set the currently active work offset to zero for each probed axis position recorded. The inactive mode should be used for setting work coordinates to zero for stock or part programs.</p>
+</dd>
+</dl>
+</div></blockquote>
+</section>
+<section id="parameters">
+<h2>Parameters<a class="headerlink" href="#parameters" title="Permalink to this heading"></a></h2>
+<blockquote>
+<div><img alt="_images/probe_00_parameters.png" class="align-center" src="_images/probe_00_parameters.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<ul class="simple">
+<li><dl class="simple">
+<dt>PROBE TOOL#:</dt><dd><p>This should be set to match the probe entry in your tool table.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>STEP OFF WIDTH:</dt><dd><p>How far the probe will travel in either X or Y before moving down a side.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>PROBE FAST FDRATE:</dt><dd><p>Fast feed rate, for first touch when probing.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>PROBE SLOW FDRATE:</dt><dd><p>Slow feed rate for second touch when probing. If set to 0 (zero) a second touch will not be performed and the result from the fast probe is used.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>PROBE TRAVERSE FDRATE:</dt><dd><p>This is the speed at which non-probing motion will move at such as traversing the top of a workpiece or repositioning for a subsequent probe event.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>MAX X/Y DISTANCE:</dt><dd><p>Maximum distance to travel in either X or Y before tripping out.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>X/Y CLEARANCE:</dt><dd><p>Retract distance for X and Y probing after touch, this should be at least larger than any backlash in the axis.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>MAX Z DISTANCE:</dt><dd><p>Maximum distance to travel in Z before tripping out.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>Z CLEARANCE:</dt><dd><p>Retract distance for Z probing after touch, this should be at least larger than any backlash in the axis.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>EXTRA PROBE DEPTH:</dt><dd><p>Extra distance to move down a side (after probe diameter) before probing in X or Y.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>EDGE WIDTH:</dt><dd><p>Distance between test points when probing for Edge Angle’s.</p>
+</dd>
+</dl>
+</li>
+</ul>
+</div></blockquote>
+</section>
+<section id="probe-results">
+<h2>Probe Results<a class="headerlink" href="#probe-results" title="Permalink to this heading"></a></h2>
+<blockquote>
+<div><img alt="_images/probe_00_results_1.png" class="align-center" src="_images/probe_00_results_1.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>This shows the results from the last probing run. There are reset buttons to clear the data if needed.</p>
+</div></blockquote>
+</section>
+<section id="probing-routines">
+<h2>Probing Routines<a class="headerlink" href="#probing-routines" title="Permalink to this heading"></a></h2>
+<blockquote>
+<div><p>The purple dot in each button shows the position at which your probe tip should be approximately placed before starting the probe run.
+The Z height above the workpiece should be no more than your “<strong>MAX Z DISTANCE</strong>” parameter.</p>
+<img alt="_images/probe_01_outside_corners.png" class="align-center" src="_images/probe_01_outside_corners.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<img alt="_images/probe_02_inside_corners.png" class="align-center" src="_images/probe_02_inside_corners.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<img alt="_images/probe_03_boss_and_pocket.png" class="align-center" src="_images/probe_03_boss_and_pocket.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<img alt="_images/probe_04_ridge_and_valley.png" class="align-center" src="_images/probe_04_ridge_and_valley.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<img alt="_images/probe_05_edge_angle.png" class="align-center" src="_images/probe_05_edge_angle.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<img alt="_images/probe_06_rotary_axis.png" class="align-center" src="_images/probe_06_rotary_axis.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<img alt="_images/probe_07_calibrate.png" class="align-center" src="_images/probe_07_calibrate.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+</div></blockquote>
+</section>
+<section id="help">
+<h2>Help<a class="headerlink" href="#help" title="Permalink to this heading"></a></h2>
+<blockquote>
+<div><img alt="_images/probe_08_probe_help.png" class="align-center" id="probe-help" src="_images/probe_08_probe_help.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p><strong>Included here for offline reference, though a running PB instance may have more up-to-date help.</strong></p>
+<img alt="_images/probe_help_01_step_off_width.png" class="align-center" src="_images/probe_help_01_step_off_width.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<img alt="_images/probe_help_02_extra_probe_depth.png" class="align-center" src="_images/probe_help_02_extra_probe_depth.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<img alt="_images/probe_help_03_max_z_distance.png" class="align-center" src="_images/probe_help_03_max_z_distance.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<img alt="_images/probe_help_04_max_xy_distance.png" class="align-center" src="_images/probe_help_04_max_xy_distance.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<img alt="_images/probe_help_05_z_clearance.png" class="align-center" src="_images/probe_help_05_z_clearance.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<img alt="_images/probe_help_06_xz_clearance.png" class="align-center" src="_images/probe_help_06_xz_clearance.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<img alt="_images/probe_help_07_hint.png" class="align-center" src="_images/probe_help_07_hint.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+</div></blockquote>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="lathe_interface.html" class="btn btn-neutral float-left" title="Probe Basic Lathe Interface" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="tool_length_setter.html" class="btn btn-neutral float-right" title="Tool Length Setter" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021, Chris Polanski.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Customisation with Python &mdash; ProbeBasic  documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="User Tabs" href="user_tabs.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            ProbeBasic
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Installation:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="stable_quick_start_apt.html">Probe Basic APT Stable Install</a></li>
+<li class="toctree-l1"><a class="reference internal" href="development_quick_start_apt.html">Probe Basic APT Develop Install</a></li>
+<li class="toctree-l1"><a class="reference internal" href="stable_develop_branch_change.html">Changing Stable &lt;-&gt; Develop Versions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="quick_start.html">Probe Basic .deb Install</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dev_install.html">Probe Basic Development Installation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Configuration:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="probe_basic_parameters.html">Probe Basic Parameters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="machine_config.html">Machine Configuration (INI, HAL, Files)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="atc_setup.html">Carousel ATC Setup</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Interface:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="mill_interface.html">Mill</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lathe_interface.html">Lathe</a></li>
+<li class="toctree-l1"><a class="reference internal" href="probing.html">Probing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tool_length_setter.html">Tool Length Setter</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Extending:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="user_tabs.html">User Tabs</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Customisation with Python</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#button-renaming-example">Button Renaming Example</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">ProbeBasic</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Customisation with Python</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/custom_ux_hacking.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="customisation-with-python">
+<h1>Customisation with Python<a class="headerlink" href="#customisation-with-python" title="Permalink to this heading"></a></h1>
+<p>It is possible to make a simple customisations to the user interface, like renaming a button, by overriding the main window provider in you <code class="docutils literal notranslate"><span class="pre">custom_config.yml</span></code> and a simple python class that extends <code class="docutils literal notranslate"><span class="pre">ProbeBasic</span></code></p>
+<p>These changes can be achieved with the standard instal of Probe Basic, no need for a Development install. Though you may need to dig into the <code class="docutils literal notranslate"><span class="pre">probe_basic.ui</span></code> file in Qt Designer to find the needed widget names (<code class="docutils literal notranslate"><span class="pre">editvcp</span> <span class="pre">probe_basic</span></code>).</p>
+<section id="button-renaming-example">
+<h2>Button Renaming Example<a class="headerlink" href="#button-renaming-example" title="Permalink to this heading"></a></h2>
+<p>In the following python example the <strong>FLOOD</strong> button is rename to <strong>FOO</strong> and the <strong>MIST</strong> button is renamed to <strong>BAR</strong></p>
+<img alt="_images/custom_ux_labels.png" class="align-center" src="_images/custom_ux_labels.png" />
+<p>To try out the following yourself, save the python below to a file called <code class="docutils literal notranslate"><span class="pre">custom_probebasic.py</span></code> under your machine config directory (<code class="docutils literal notranslate"><span class="pre">~/linuxcnc/configs/{my_machine}/custom_probebasic.py</span></code>).</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">probe_basic.probe_basic</span> <span class="kn">import</span> <span class="n">ProbeBasic</span>
+
+<span class="k">class</span> <span class="nc">CustomProbeBasic</span><span class="p">(</span><span class="n">ProbeBasic</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Main window class for the ProbeBasic VCP.</span>
+
+<span class="sd">    save this file as `custom_probebasic.py` in you configs directory</span>
+<span class="sd">    then your custom_config.yml add the `provider:` line below to the `mainwidow: section`</span>
+
+<span class="sd">    ```</span>
+<span class="sd">    windows:</span>
+<span class="sd">      mainwindow:</span>
+<span class="sd">        provider: custom_probebasic:CustomProbeBasic</span>
+<span class="sd">        kwargs:</span>
+<span class="sd">          confirm_exit: false</span>
+<span class="sd">    ```</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">CustomProbeBasic</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+        <span class="c1"># rename the Flood button</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">flood_button</span><span class="o">.</span><span class="n">setText</span><span class="p">(</span><span class="s2">&quot;Foo&quot;</span><span class="p">)</span>
+
+        <span class="c1"># rename the Mist button</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">mist_button</span><span class="o">.</span><span class="n">setText</span><span class="p">(</span><span class="s2">&quot;Bar&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Then edit the <code class="docutils literal notranslate"><span class="pre">~/linuxcnc/configs/{my_machine}/custom_config.yml</span></code> file and add the line <code class="docutils literal notranslate"><span class="pre">provider:</span> <span class="pre">custom_probebasic:CustomProbeBasic</span></code> just under <code class="docutils literal notranslate"><span class="pre">mainwindow:</span></code></p>
+<p><strong>Before:</strong></p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">windows</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">mainwindow</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">kwargs</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">confirm_exit</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
+</pre></div>
+</div>
+<p><strong>After:</strong></p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">windows</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">mainwindow</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">provider</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">custom_probebasic:CustomProbeBasic</span>
+<span class="w">    </span><span class="nt">kwargs</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">confirm_exit</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
+</pre></div>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="user_tabs.html" class="btn btn-neutral float-left" title="User Tabs" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021, Chris Polanski.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

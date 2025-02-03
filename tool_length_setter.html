@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tool Length Setter &mdash; ProbeBasic  documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="User Tabs" href="user_tabs.html" />
+    <link rel="prev" title="Probing" href="probing.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            ProbeBasic
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Installation:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="stable_quick_start_apt.html">Probe Basic APT Stable Install</a></li>
+<li class="toctree-l1"><a class="reference internal" href="development_quick_start_apt.html">Probe Basic APT Develop Install</a></li>
+<li class="toctree-l1"><a class="reference internal" href="stable_develop_branch_change.html">Changing Stable &lt;-&gt; Develop Versions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="quick_start.html">Probe Basic .deb Install</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dev_install.html">Probe Basic Development Installation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Configuration:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="probe_basic_parameters.html">Probe Basic Parameters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="machine_config.html">Machine Configuration (INI, HAL, Files)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="atc_setup.html">Carousel ATC Setup</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Interface:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="mill_interface.html">Mill</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lathe_interface.html">Lathe</a></li>
+<li class="toctree-l1"><a class="reference internal" href="probing.html">Probing</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Tool Length Setter</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#tool-touch-off-position">Tool Touch Off Position</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#tool-touch-off-parameter-settings">Tool Touch Off Parameter Settings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#measuring-tools">Measuring Tools</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Extending:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="user_tabs.html">User Tabs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="custom_ux_hacking.html">Customisation with Python</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">ProbeBasic</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Tool Length Setter</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/tool_length_setter.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="tool-length-setter">
+<h1>Tool Length Setter<a class="headerlink" href="#tool-length-setter" title="Permalink to this heading"></a></h1>
+<blockquote>
+<div><p>We recently updated the tool touch off page and it is now located under a tab on the main probing tab.  there are explanations and visual graphics for better understanding on the tool touch off setup and parameter functions.  Be sure to review the updated information/explanation tabs.  We also have eliminated the need to use G59.3 as a storing location for the probed coordinates used in the length offset calculation.  Below is an image of the new toolsetter page for reference.</p>
+<img alt="_images/toolsetter_page_doc_image.png" class="align-center" src="_images/toolsetter_page_doc_image.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+</div></blockquote>
+<section id="tool-touch-off-position">
+<h2>Tool Touch Off Position<a class="headerlink" href="#tool-touch-off-position" title="Permalink to this heading"></a></h2>
+<blockquote>
+<div><div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>Tool touch off position (G30), X and Y should be centered on the fixed tool setter platter.  Z should always be set to Z Home position Z0.0000</p>
+</div>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<ol class="arabic simple">
+<li><p>Setting the tool touch off position, jog the machine to the center point of the tool setter platter and indicate it in or probe it with the touch probe to find exact center point.</p></li>
+<li><p>Next, retract the z axis to the home position Z0.0000</p></li>
+<li><p>Press the “SET TOOL TOUCH OFF POS” button, this will capture and store the current locating for probing tools from the touch off routine.</p></li>
+</ol>
+</div></blockquote>
+</section>
+<section id="tool-touch-off-parameter-settings">
+<h2>Tool Touch Off Parameter Settings<a class="headerlink" href="#tool-touch-off-parameter-settings" title="Permalink to this heading"></a></h2>
+<blockquote>
+<div><ol class="arabic simple">
+<li><p>Enter the desired Parameter settings for all parameters:</p>
+<ul class="simple">
+<li><p>Spindle Zero</p></li>
+<li><p>Fast Probe Feedrate</p></li>
+<li><p>Slow Probe Feedrate</p></li>
+<li><p>Traverse Feedrate</p></li>
+<li><p>Z Max Travel</p></li>
+<li><p>XY Max Travel</p></li>
+<li><p>Retract distance</p></li>
+</ul>
+</li>
+</ol>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>Spindle Zero is the length/distance from the empty spindle nose at the Z home Position Z0.0000 to the top of the tool setter (at the trip point)
+the value for <code class="docutils literal notranslate"><span class="pre">Spindle</span> <span class="pre">Zero</span></code> can be measured by probing the top of the setter using the spindle nose itself to find the distance (spindle empty spindle no holder loaded)</p>
+</div>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<ol class="arabic" start="2">
+<li><p>Select the if Tool Diameter Offset will be used.  This feature will automatically offset the probing position by 1/2 of the tools stored diameter in the tool table.  the direction the tool will move in relation to the ToolSetter platter is determined by the Tool Offset Direction Buttons in the parameter setting section.  This feature can be useful when measuring tools that are larger than the platter of the tool setter, such as facemills etc.</p>
+<img alt="_images/toolsetter_page_doc_image_1.png" class="align-center" src="_images/toolsetter_page_doc_image_1.png" />
+</li>
+</ol>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<ol class="arabic simple" start="3">
+<li><p>The Tool Diam Probe button is a place holder only, measuring the diameter of a tool requires a specific type of tool setter capable of measuring in 3 dimensions.  We felt it was safer for those wanting this functionality to creating their own probing routine specific to their machine and hardware.  In the subroutines folder is in the tool_touch_off.ngc file the parameter is there and passed to be able to turn this on or off.  This will allow users to add to the subroutine as needed and have control over that functionality from within the user interface.</p></li>
+<li><p>With all of the parameters set and the touch off location defined, you are now ready to test your firt tool touch off routine. follow the instruction below to proceed.</p></li>
+</ol>
+</div></blockquote>
+</section>
+<section id="measuring-tools">
+<h2>Measuring Tools<a class="headerlink" href="#measuring-tools" title="Permalink to this heading"></a></h2>
+<blockquote>
+<div><ol class="arabic simple">
+<li><p>To measure a tool, Load the tool in the spindle using the tool page in the probe basic interface</p></li>
+<li><p>Press the “TOUCH OFF CURRENT TOOL” button, this will  initiate the tool touch off routine and move the machine to the tool touch off position and probe the tool length to capture and store the current length of the tool in the tool table.</p></li>
+</ol>
+<img alt="_images/tool_length_measure.png" class="align-center" src="_images/tool_length_measure.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+</div></blockquote>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="probing.html" class="btn btn-neutral float-left" title="Probing" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="user_tabs.html" class="btn btn-neutral float-right" title="User Tabs" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021, Chris Polanski.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
